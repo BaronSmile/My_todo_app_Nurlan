@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TasksFilterButton = ({ onBtnClick, name, className }) => (
+const TasksFilterButton = ({onFilterBtn, name, className}) => (
   <li>
-    <button type="button" className={className} name={name} onClick={onBtnClick}>
+    <button type="button" className={className} name={name} onClick={onFilterBtn}>
       {name}
     </button>
   </li>
@@ -17,7 +17,7 @@ TasksFilterButton.defaultProps = {
 TasksFilterButton.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
-  onBtnClick: PropTypes.func.isRequired,
+  onFilterBtn: PropTypes.func.isRequired,
 };
 
 export default TasksFilterButton;

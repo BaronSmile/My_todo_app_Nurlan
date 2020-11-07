@@ -24,11 +24,11 @@ export default class TasksFilter extends Component {
 
   render() {
     const {buttons, selected} = this.state;
-    const elems = buttons.map(({name}) => {
+    const elements = buttons.map(({name}) => {
       const className = name === selected ? 'selected' : '';
-      return <TasksFilterButton className={className} name={name} key={name} onBtnClick={this.changeSelectedButton}/>;
+      return <TasksFilterButton className={className} name={name} key={name} onFilterBtn={this.changeSelectedButton}/>;
     });
 
-    return <ul className="filters">{elems}</ul>;
+    return <ul className="filters">{elements}</ul>;
   }
 }
