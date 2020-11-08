@@ -1,13 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import TasksFilter from '../task-filter/tasks-filter';
+import TasksFilter from "../task-filter/tasks-filter";
 
 const Footer = ({ counter, onChangeFilter, onClearCompletedClick }) => (
   <footer className="footer">
     <span className="todo-count">{counter} items left</span>
     <TasksFilter onChangeFilter={onChangeFilter} />
-    <button type="button" className="clear-completed" onClick={onClearCompletedClick}>
+    <button
+      type="button"
+      className="clear-completed"
+      onClick={onClearCompletedClick}
+    >
       Clear completed
     </button>
   </footer>
