@@ -22,7 +22,7 @@ export default class StopWatch extends Component {
     setInterval(() => {
       const { ms, sec, min, isRunning } = this.state;
       if (isRunning) {
-        if (ms < 100) this.setState({ ms: ms + 1 });
+        if (ms < 99) this.setState({ ms: ms + 1 });
         else this.setState({ sec: sec + 1, ms: 0 });
         if (sec > 59) this.setState({ min: min + 1, sec: 0 });
       }
