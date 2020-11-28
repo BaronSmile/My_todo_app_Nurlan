@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class NewTaskForm extends Component {
   state = {
-    value: "",
+    value: '',
   };
 
   static propTypes = {
@@ -22,7 +22,7 @@ export default class NewTaskForm extends Component {
     event.preventDefault();
     onItemAdded(value);
     this.setState({
-      value: "",
+      value: '',
     });
   };
 
@@ -30,12 +30,7 @@ export default class NewTaskForm extends Component {
     const { value } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          className="new-todo"
-          placeholder="What needs to be done?"
-          onChange={this.onLabelChange}
-          value={value}
-        />
+        <input className="new-todo" placeholder="What needs to be done?" onChange={this.onLabelChange} value={value} />
       </form>
     );
   }

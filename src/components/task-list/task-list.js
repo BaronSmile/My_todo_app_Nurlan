@@ -1,18 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import Task from "../task/task";
+import Task from '../task/task';
 
-const TaskList = ({
-  tasks,
-  onDelete,
-  onToggle,
-  onStartEditing,
-  onFinishEditing,
-  filter,
-  toggleTimer,
-  clearTimer,
-}) => {
+const TaskList = ({ tasks, onDelete, onToggle, onStartEditing, onFinishEditing, filter, toggleTimer, clearTimer }) => {
   const el = tasks.map(({ id, ...props }) => (
     <Task
       key={id}
@@ -31,12 +22,12 @@ const TaskList = ({
 };
 
 TaskList.defaultProps = {
-  filter: "All",
+  filter: 'All',
   tasks: [
     {
       done: false,
       editing: false,
-      description: "Example task",
+      description: 'Example task',
       date: new Date(),
       lifeTime: 0,
       id: 300,

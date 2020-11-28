@@ -1,20 +1,16 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import "./app.css";
-import Header from "../header/header";
-import TaskList from "../task-list/task-list";
-import Footer from "../footer/footer";
+import './app.css';
+import Header from '../header/header';
+import TaskList from '../task-list/task-list';
+import Footer from '../footer/footer';
 
 export default class App extends Component {
   maxId = 1;
 
   state = {
-    todoData: [
-      this.createItem("Completed task"),
-      this.createItem("Editing task"),
-      this.createItem("Active task"),
-    ],
-    filter: "All",
+    todoData: [this.createItem('Completed task'), this.createItem('Editing task'), this.createItem('Active task')],
+    filter: 'All',
   };
 
   findIdx = (arr, id) => arr.findIndex((el) => el.id === id);
@@ -64,36 +60,36 @@ export default class App extends Component {
 
   toggleDone = (id) => {
     this.setState(({ todoData }) => ({
-      todoData: this.toggleItemProperty(todoData, id, "done"),
+      todoData: this.toggleItemProperty(todoData, id, 'done'),
     }));
 
     this.setState(({ todoData }) => ({
-      todoData: this.setItemProperty(todoData, id, "onTimer", false),
+      todoData: this.setItemProperty(todoData, id, 'onTimer', false),
     }));
     this.pauseTimer(id);
   };
 
   closeEditingInput = (id) => {
     this.setState(({ todoData }) => ({
-      todoData: this.toggleItemProperty(todoData, id, "editing"),
+      todoData: this.toggleItemProperty(todoData, id, 'editing'),
     }));
   };
 
   editItemDescription = (id, value) => {
     this.setState(({ todoData }) => ({
-      todoData: this.setItemProperty(todoData, id, "description", value),
+      todoData: this.setItemProperty(todoData, id, 'description', value),
     }));
     this.closeEditingInput(id);
   };
 
   openEditingInput = (id) => {
     const { todoData } = this.state;
-    const done = this.getItemProperty(todoData, id, "done");
+    const done = this.getItemProperty(todoData, id, 'done');
 
     if (!done) {
       this.setState(() => {
         return {
-          todoData: this.toggleItemProperty(todoData, id, "editing"),
+          todoData: this.toggleItemProperty(todoData, id, 'editing'),
         };
       });
     }
@@ -102,19 +98,19 @@ export default class App extends Component {
   toggleTimer = (id) => {
     this.setState(({ todoData }) => {
       return {
-        todoData: this.toggleItemProperty(todoData, id, "onTimer"),
+        todoData: this.toggleItemProperty(todoData, id, 'onTimer'),
       };
     });
 
     const { todoData } = this.state;
-    const onTimer = this.getItemProperty(todoData, id, "onTimer");
+    const onTimer = this.getItemProperty(todoData, id, 'onTimer');
     // eslint-disable-next-line no-unused-expressions
     !onTimer ? this.startTimer(id) : this.pauseTimer(id);
   };
 
   startTimer = (id) => {
     const { todoData: data } = this.state;
-    const time = this.getItemProperty(data, id, "time");
+    const time = this.getItemProperty(data, id, 'time');
     const start = new Date();
 
     const timerID = setInterval(() => {
@@ -123,19 +119,19 @@ export default class App extends Component {
       const currentTime = time + interval;
       this.setState(({ todoData }) => {
         return {
-          todoData: this.setItemProperty(todoData, id, "time", currentTime),
+          todoData: this.setItemProperty(todoData, id, 'time', currentTime),
         };
       });
     }, 1000);
 
     this.setState(({ todoData }) => ({
-      todoData: this.setItemProperty(todoData, id, "timerID", timerID),
+      todoData: this.setItemProperty(todoData, id, 'timerID', timerID),
     }));
   };
 
   pauseTimer = (id) => {
     const { todoData } = this.state;
-    const timerID = this.getItemProperty(todoData, id, "timerID");
+    const timerID = this.getItemProperty(todoData, id, 'timerID');
     clearInterval(timerID);
   };
 
@@ -144,12 +140,12 @@ export default class App extends Component {
 
     this.setState(({ todoData }) => {
       return {
-        todoData: this.setItemProperty(todoData, id, "time", 0),
+        todoData: this.setItemProperty(todoData, id, 'time', 0),
       };
     });
     this.setState(({ todoData }) => {
       return {
-        todoData: this.setItemProperty(todoData, id, "onTimer", false),
+        todoData: this.setItemProperty(todoData, id, 'onTimer', false),
       };
     });
   };
