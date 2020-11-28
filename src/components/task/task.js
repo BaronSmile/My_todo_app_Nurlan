@@ -1,20 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import Stopwatch from '../stopwatch/stopwatch';
 
 export default class Task extends Component {
   state = {
     // eslint-disable-next-line react/destructuring-assignment
     description: this.props.description,
-    date: "created 1 seconds ago",
+    date: 'created 1 seconds ago',
   };
 
   static defaultProps = {
     done: false,
     editing: false,
     date: new Date(),
-    description: "New Task",
-    filter: "All",
+    description: 'New Task',
+    filter: 'All',
   };
 
   static propTypes = {
@@ -51,10 +52,10 @@ export default class Task extends Component {
     let visible;
 
     switch (filter) {
-      case "Active":
+      case 'Active':
         visible = !done;
         break;
-      case "Completed":
+      case 'Completed':
         visible = done;
         break;
       default:
@@ -77,7 +78,7 @@ export default class Task extends Component {
       onFinishEditing(description);
       this.setState({ description });
     }
-    if (evt.keyCode === ENTER_KEYCODE && newValue !== "") {
+    if (evt.keyCode === ENTER_KEYCODE && newValue !== '') {
       onFinishEditing(newValue);
     }
   };
@@ -94,26 +95,20 @@ export default class Task extends Component {
       }
     };
 
-    let classEditButton = "icon icon-edit";
-    let classList = "";
+    let classEditButton = 'icon icon-edit';
+    let classList = '';
 
     if (done) {
-      classList += " completed";
-      classEditButton += " disabled";
+      classList += 'completed';
+      classEditButton += ' disabled';
     }
-    if (editing) classList += " editing";
-    if (!this.setVisible()) classList += " hidden";
+    if (editing) classList += ' editing';
+    if (!this.setVisible()) classList += ' hidden';
 
     return (
       <li className={classList}>
         <div className="view">
-          <input
-            id="checkTask"
-            className="toggle"
-            type="checkbox"
-            onChange={onToggle}
-            checked={done}
-          />
+          <input id="checkTask" className="toggle" type="checkbox" onChange={onToggle} checked={done} />
           <label htmlFor="checkTask">
             <button type="button" onClick={onToggle} onKeyUp={onKeyUp}>
               <span className="description" role="menuitem">
@@ -122,14 +117,11 @@ export default class Task extends Component {
               <span className="created">{date}</span>
             </button>
           </label>
+          <Stopwatch done={done} />
           <button type="button" className={classEditButton} onClick={onEdit}>
             <span>edit</span>
           </button>
-          <button
-            type="button"
-            className="icon icon-destroy"
-            onClick={onDelete}
-          >
+          <button type="button" className="icon icon-destroy" onClick={onDelete}>
             <span>close</span>
           </button>
         </div>
